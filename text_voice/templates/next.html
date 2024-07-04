@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Voice Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .loading {
+            display: none;
+            position: relative;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .loading-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(231, 208, 37, 0.7); /* Adjust the opacity as needed */
+            z-index: 1;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text to Voice Converter</h1>
+        <form id="conversion-form" method="POST">
+            {% csrf_token %}
+            <h3>Enter text</h3>
+            <input type="text" id="text-input" name="name" required>
+            <input type="submit" value="Convert">
+            <div class="loading" id="loading-message">
+                <div class="loading-background"></div>
+                Converting...
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('conversion-form').addEventListener('submit', function(event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Display loading message when form is submitted
+            document.getElementById('loading-message').classList.add('show');
+
+            // Simulate form submission delay (remove this in production)
+            setTimeout(function() {
+                // Submit the form after a delay (you can replace this with actual form submission logic)
+                document.getElementById('conversion-form').submit();
+            }, 2000); // Change 2000 to your desired delay in milliseconds
+        });
+    </script>
+</body>
+</html>
